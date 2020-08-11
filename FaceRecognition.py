@@ -1,8 +1,8 @@
 import cv2
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
-recognizer.read('/root/PycharmProjects/Face/Trainer/trainer.yml')
-cascadePath = "/root/anaconda3/lib/python3.7/site-packages/cv2/data/haarcascade_frontalface_default.xml"
+recognizer.read('path/to/trainer.yml')
+cascadePath = "haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascadePath)
 
 font = cv2.FONT_HERSHEY_SIMPLEX
@@ -11,7 +11,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 id = 0
 
 # names related to ids: example ==> Marcelo: id=1,  etc
-names = ['WAIZ']
+names = ['SHADOW','LETHAL','MERCY','UMAR']
 
 cam = cv2.VideoCapture(0)
 cam.set(3, 640)
@@ -42,10 +42,10 @@ while True:
 
         if confidence < 100:
             # id = names[id]
-            confidence = "  {0}%".format(round(confidence))
+            confidence = "  {0}%".format(round(confidence-100))
         else:
             id = "unknown"
-            confidence = "  {0}%".format(round(confidence))
+            confidence = "  {0}%".format(round(confidence-100))
 
         cv2.putText(img, str(id), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
         cv2.putText(img, str(confidence), (x + 5, y + h - 5), font, 1, (255, 255, 0), 1)
