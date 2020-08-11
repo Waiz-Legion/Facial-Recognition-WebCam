@@ -5,11 +5,10 @@ cam = cv2.VideoCapture(0)
 cam.set(3, 640)
 cam.set(4, 480)
 
-face_detector = cv2.CascadeClassifier('/root/anaconda3/lib/python3.7/site-packages/cv2/data/'
-                                      'haarcascade_frontalface_default.xml')
+face_detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 
-face_id = input('\n enter user id and press <return> ==>  ')
+face_id = input('\n enter user id and press <return> >>>  ')
 
 print("\n [INFO] Initializing face capture. Look the camera and wait ...")
 
@@ -17,7 +16,7 @@ count = 0
 
 while True:
 
-    ret, img = cam.read()
+    success, img = cam.read()
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_detector.detectMultiScale(gray, 1.3, 5)
